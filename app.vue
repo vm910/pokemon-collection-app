@@ -4,6 +4,4 @@
   </NuxtLayout>
 </template>
 
-<script setup lang="ts">
-  const nekaj = ref('nekaj')
-</script>
+<script setup lang="ts"></script>

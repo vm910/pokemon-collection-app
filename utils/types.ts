@@ -15,6 +15,7 @@ type PokemonResponse = {
     front_default: string
   }
 }
+
 type PokemonModel = {
   name: string
   stats: {
@@ -26,3 +27,5 @@ type PokemonModel = {
   mainAbility: string
   img: string
 }
+
+export type { PokemonResponse, PokemonModel }

@@ -82,22 +82,26 @@
     fetchRandomPokemon()
   }
 
+  const notifyAndSearchAgain = (text: string, color: string) => {
+    snackbarText.value = text
+    snackbarColor.value = color
+    snackbar.value = true
+    searchAgain()
+  }
+
   const pokemonAddedNotification = (pokemonName: string, success: boolean) => {
     if (!pokemonName) {
-      snackbarText.value = 'Error adding pokemon to your collection!'
-      snackbar.value = true
-      snackbarColor.value = 'error'
-      searchAgain()
+      notifyAndSearchAgain('Error adding pokemon to your collection!', 'error')
     } else if (!success) {
-      snackbarText.value = `${pokemonName.toUpperCase()} already in your collection!`
-      snackbar.value = true
-      snackbarColor.value = 'error'
-      searchAgain()
+      notifyAndSearchAgain(
+        `${pokemonName.toUpperCase()} already in your collection!`,
+        'error'
+      )
     } else {
-      snackbarText.value = `${pokemonName.toUpperCase()} added to your collection!`
-      snackbar.value = true
-      snackbarColor.value = 'success'
-      searchAgain()
+      notifyAndSearchAgain(
+        `${pokemonName.toUpperCase()} added to your collection!`,
+        'success'
+      )
     }
   }
 

@@ -1,5 +1,5 @@
 <template>
-  <v-card variant="outlined">
+  <v-card variant="outlined" @click="$emit('pokemon-selected', pokemon)">
     <v-row class="d-flex align-center justify-center">
       <v-col class="text-center">
         <v-img
@@ -31,9 +31,14 @@
   import { PokemonModel } from '~/utils/types'
   import { useContextStore } from '~/store'
 
-  defineProps<{
-    pokemon: PokemonModel
-  }>()
+  defineProps({
+    pokemon: {
+      type: Object as PropType<PokemonModel>,
+      required: true,
+    },
+  })
+
+  defineEmits(['pokemon-selected'])
 
   const { removePokemon } = useContextStore()
 </script>

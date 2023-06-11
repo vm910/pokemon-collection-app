@@ -1,9 +1,9 @@
 import { defineStore } from 'pinia'
 import { PokemonModel } from '@/utils/types'
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 
 export const useContextStore = defineStore('context', () => {
-  const selectedPokemon = ref<PokemonModel | null>(null)
+  const pokemon = ref<PokemonModel | null>(null)
   const pokemonList = ref<PokemonModel[]>([])
 
   const keepPokemon = (p: PokemonModel) => {
@@ -21,16 +21,10 @@ export const useContextStore = defineStore('context', () => {
     )
   }
 
-  const selectPokemon = (p: PokemonModel) => {
-    selectedPokemon.value = p
-    console.log(selectedPokemon.value)
-  }
-
   return {
-    selectedPokemon,
+    pokemon,
     pokemonList,
     keepPokemon,
     removePokemon,
-    selectPokemon,
   }
 })

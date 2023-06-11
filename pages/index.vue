@@ -26,9 +26,11 @@
 </template>
 
 <script setup lang="ts">
-  import { PokemonModel, PokemonResponse } from '~/utils/types'
+  import { PokemonResponse } from '~/utils/types'
+  import { useContextStore } from '~/store'
+  import { storeToRefs } from 'pinia'
 
-  const pokemon = ref<PokemonModel | null>(null)
+  const { pokemon } = storeToRefs(useContextStore())
   const loading = ref(false)
 
   const snackbar = ref(false)
@@ -70,7 +72,9 @@
   }
 
   onMounted(() => {
-    fetchRandomPokemon()
+    if (!pokemon.value) {
+      fetchRandomPokemon()
+    }
   })
 
   const searchAgain = () => {

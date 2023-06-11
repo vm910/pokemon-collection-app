@@ -7,7 +7,7 @@ export const useContextStore = defineStore('context', () => {
   const pokemonList = ref<PokemonModel[]>([])
 
   const keepPokemon = (p: PokemonModel | null) => {
-    if (!p) return false
+    if (p === null) return false
     if (!pokemonList.value.find((pokemon) => pokemon.name === p.name)) {
       pokemonList.value.push(p)
       return true
@@ -17,10 +17,11 @@ export const useContextStore = defineStore('context', () => {
   }
 
   const removePokemon = (p: PokemonModel | null) => {
-    if (!p) return
+    if (p === null) return false
     pokemonList.value = pokemonList.value.filter(
       (pokemon) => pokemon.name !== p.name
     )
+    return true
   }
 
   return {

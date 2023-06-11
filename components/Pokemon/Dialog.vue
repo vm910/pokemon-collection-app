@@ -26,7 +26,6 @@
   const dialog = ref(false)
 
   const removeAndClose = () => {
-    if (!props.selectedPokemon) return
     removePokemon(props.selectedPokemon)
     dialog.value = false
   }

@@ -33,7 +33,7 @@
 
   defineProps({
     pokemon: {
-      type: Object as PropType<PokemonModel>,
+      type: Object as PropType<PokemonModel | null>,
       required: true,
     },
   })

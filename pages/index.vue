@@ -83,7 +83,12 @@
   }
 
   const pokemonAddedNotification = (pokemonName: string, success: boolean) => {
-    if (!success) {
+    if (!pokemonName) {
+      snackbarText.value = 'Error adding pokemon to your collection!'
+      snackbar.value = true
+      snackbarColor.value = 'error'
+      searchAgain()
+    } else if (!success) {
       snackbarText.value = `${pokemonName.toUpperCase()} already in your collection!`
       snackbar.value = true
       snackbarColor.value = 'error'

@@ -28,9 +28,8 @@
   const emit = defineEmits(['refresh-search', 'pokemon-added'])
 
   const addPokemon = () => {
-    if (!props.pokemon) return
     const success = keepPokemon(props.pokemon)
-    emit('pokemon-added', props.pokemon.name, success)
+    emit('pokemon-added', props.pokemon?.name, success)
   }
 </script>
 

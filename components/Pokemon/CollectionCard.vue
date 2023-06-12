@@ -1,5 +1,5 @@
 <template>
-  <v-card variant="outlined" @click="$emit('pokemon-selected', pokemon)">
+  <v-card variant="outlined" @click="pokemonDetails">
     <v-row class="d-flex align-center justify-center">
       <v-col class="text-center">
         <v-img
@@ -20,27 +20,63 @@
         class="smol"
         icon="mdi-delete"
         color="red"
-        @click="() => removePokemon(pokemon)"
+        @click.stop="deleteDialog = true"
       />
     </v-card-text>
+    <v-dialog v-model="deleteDialog" max-width="350px">
+      <v-card>
+        <v-card-title class="headline">Confirm Deletion</v-card-title>
+        <v-card-text
+          >Are you sure you want to delete
+          {{ pokemon?.name.toUpperCase() }}?</v-card-text
+        >
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="green darken-1" @click="deleteDialog = false"
+            >Cancel</v-btn
+          >
+          <v-btn color="red darken-1" @click="deleteConfirmed">Confirm</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+    <v-dialog v-model="detailsDialog" max-width="500px">
+      <v-card>
+        <PokemonDetails ability :selectedPokemon="pokemon" />
+        <v-card-actions>
+          <v-spacer />
+          <v-btn color="green darken-1" @click="detailsDialog = false"
+            >Close</v-btn
+          >
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-card>
-  <div></div>
 </template>
 
 <script setup lang="ts">
   import { PokemonModel } from '~/utils/types'
   import { useContextStore } from '~/store'
 
-  defineProps({
+  const props = defineProps({
     pokemon: {
       type: Object as PropType<PokemonModel | null>,
       required: true,
     },
   })
 
-  defineEmits(['pokemon-selected'])
-
   const { removePokemon } = useContextStore()
+
+  const deleteDialog = ref(false)
+  const detailsDialog = ref(false)
+
+  const deleteConfirmed = () => {
+    removePokemon(props.pokemon)
+    deleteDialog.value = false
+  }
+
+  const pokemonDetails = () => {
+    detailsDialog.value = true
+  }
 </script>
 
 <style scoped>

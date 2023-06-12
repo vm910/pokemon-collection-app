@@ -20,6 +20,25 @@
           @refresh-search="searchAgain"
           @pokemon-added="pokemonAddedNotification"
         />
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            :disabled="loading"
+            variant="tonal"
+            color="primary"
+            @click="addPokemon"
+          >
+            Keep
+          </v-btn>
+          <v-btn
+            :disabled="loading"
+            variant="tonal"
+            color="secondary"
+            @click="fetchRandomPokemon"
+          >
+            Search
+          </v-btn>
+        </v-card-actions>
       </v-col>
     </v-row>
   </v-container>
@@ -31,6 +50,7 @@
   import { storeToRefs } from 'pinia'
 
   const { pokemon } = storeToRefs(useContextStore())
+  const { keepPokemon } = useContextStore()
   const loading = ref(false)
 
   const snackbar = ref(false)
@@ -77,31 +97,40 @@
     }
   })
 
+  const addPokemon = () => {
+    pokemonAddedNotification(pokemon.value?.name, keepPokemon(pokemon.value))
+  }
+
   const searchAgain = () => {
     pokemon.value = null
     fetchRandomPokemon()
   }
 
-  const notifyAndSearchAgain = (text: string, color: string) => {
+  const notify = (text: string, color: string) => {
     snackbarText.value = text
     snackbarColor.value = color
     snackbar.value = true
-    searchAgain()
   }
 
-  const pokemonAddedNotification = (pokemonName: string, success: boolean) => {
+  const pokemonAddedNotification = (
+    pokemonName: string | undefined,
+    success: boolean
+  ) => {
     if (!pokemonName) {
-      notifyAndSearchAgain('Error adding pokemon to your collection!', 'error')
+      notify('Error adding pokemon to your collection!', 'error')
+      searchAgain()
     } else if (!success) {
-      notifyAndSearchAgain(
+      notify(
         `${pokemonName.toUpperCase()} already in your collection!`,
         'error'
       )
+      searchAgain()
     } else {
-      notifyAndSearchAgain(
+      notify(
         `${pokemonName.toUpperCase()} added to your collection!`,
         'success'
       )
+      searchAgain()
     }
   }
 

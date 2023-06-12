@@ -9,10 +9,8 @@
           <v-skeleton-loader type="text" width="50%" />
         </v-card-title>
         <v-card-text>
-          <v-skeleton-loader type="text" width="80%" />
-          <v-skeleton-loader type="text" width="70%" />
-          <v-skeleton-loader type="text" width="60%" />
-          <v-skeleton-loader type="text" width="50%" />
+          <v-skeleton-loader type="text@4" />
+          <v-skeleton-loader type="text" />
         </v-card-text>
       </v-col>
     </v-row>

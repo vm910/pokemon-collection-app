@@ -13,7 +13,6 @@
         />
       </v-col>
     </v-row>
-    <v-divider />
     <v-card-text class="d-flex justify-space-between align-center py-1">
       <div>{{ pokemon?.name.toUpperCase() }}</div>
       <v-btn
@@ -42,14 +41,15 @@
       </v-card>
     </v-dialog>
     <v-dialog v-model="detailsDialog" max-width="500px">
-      <v-card>
+      <v-card class="relative">
+        <v-btn
+          class="button-top-right smol"
+          icon="mdi-close"
+          small
+          color="red"
+          @click="detailsDialog = false"
+        />
         <PokemonDetails ability :selectedPokemon="pokemon" />
-        <v-card-actions>
-          <v-spacer />
-          <v-btn color="red" variant="flat" @click="detailsDialog = false"
-            >Close</v-btn
-          >
-        </v-card-actions>
       </v-card>
     </v-dialog>
   </v-card>
@@ -85,5 +85,15 @@
   .smol {
     height: 32px;
     width: 32px;
+  }
+
+  .relative {
+    position: relative;
+  }
+
+  .button-top-right {
+    position: absolute;
+    top: 5px;
+    right: 5px;
   }
 </style>

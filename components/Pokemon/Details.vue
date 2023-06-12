@@ -1,6 +1,6 @@
 <template>
-  <v-row>
-    <v-col cols="4" class="d-flex align-center justify-center">
+  <v-row no-gutters>
+    <v-col cols="4" class="d-flex">
       <v-img :src="selectedPokemon?.img" :alt="selectedPokemon?.name" />
       <v-divider vertical class="my-4" />
     </v-col>

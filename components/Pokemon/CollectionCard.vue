@@ -32,10 +32,12 @@
         >
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="green darken-1" @click="deleteDialog = false"
+          <v-btn color="green" variant="flat" @click="deleteDialog = false"
             >Cancel</v-btn
           >
-          <v-btn color="red darken-1" @click="deleteConfirmed">Confirm</v-btn>
+          <v-btn color="red" variant="flat" @click="deleteConfirmed"
+            >Confirm</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -44,7 +46,7 @@
         <PokemonDetails ability :selectedPokemon="pokemon" />
         <v-card-actions>
           <v-spacer />
-          <v-btn color="green darken-1" @click="detailsDialog = false"
+          <v-btn color="red" variant="flat" @click="detailsDialog = false"
             >Close</v-btn
           >
         </v-card-actions>

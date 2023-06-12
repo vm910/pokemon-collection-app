@@ -24,16 +24,18 @@
           <v-spacer />
           <v-btn
             :disabled="loading"
-            variant="tonal"
-            color="primary"
+            variant="flat"
+            prepend-icon="mdi-pokeball"
+            color="green"
             @click="addPokemon"
           >
             Keep
           </v-btn>
           <v-btn
             :disabled="loading"
-            variant="tonal"
-            color="secondary"
+            variant="flat"
+            color="purple"
+            prepend-icon="mdi-magnify"
             @click="fetchRandomPokemon"
           >
             Search

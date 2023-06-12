@@ -3,7 +3,7 @@
     <PokemonDetails ability :selected-pokemon="pokemon" />
     <v-divider />
     <v-card-actions>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <v-btn variant="tonal" color="primary" @click="addPokemon"> Keep </v-btn>
       <v-btn variant="tonal" color="secondary" @click="$emit('refresh-search')">
         Search

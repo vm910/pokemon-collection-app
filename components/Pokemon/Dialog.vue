@@ -3,7 +3,7 @@
     <v-card>
       <PokemonDetails ability :selectedPokemon="selectedPokemon" />
       <v-card-actions>
-        <v-spacer></v-spacer>
+        <v-spacer />
         <v-btn color="green darken-1" @click="dialog = false">Close</v-btn>
         <v-btn color="red darken-1" @click="removeAndClose">Delete</v-btn>
       </v-card-actions>

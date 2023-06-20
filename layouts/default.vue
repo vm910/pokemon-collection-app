@@ -7,7 +7,7 @@
           variant="text"
           @click.stop="drawer = !drawer"
         ></v-app-bar-nav-icon>
-        <v-toolbar-title>PRIOT | Frontend Assignment </v-toolbar-title>
+        <v-toolbar-title>Pokemon collection </v-toolbar-title>
         <v-toolbar-items>
           <v-switch
             class="mr-4"
